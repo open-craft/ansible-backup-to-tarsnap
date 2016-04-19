@@ -3,7 +3,7 @@
 timestamp = $(date -Isecond)
 
 {% if TARSNAP_PRE_BACKUP_SCRIPT_REMOTE_LOCATION %}
-    {{ TARSNAP_PRE_BACKUP_SCRIPT_REMOTE_LOCATION }} || exit 1
+{{ TARSNAP_PRE_BACKUP_SCRIPT_REMOTE_LOCATION }} || exit 1
 {% endif %}
 
 /usr/local/bin/tarsnap -c --keyfile "{{ TARSNAP_KEY_REMOTE_LOCATION }}" \
