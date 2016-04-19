@@ -1,6 +1,6 @@
 dependencies:
 # This depends on our fork of pmbauer.tarsnap (I hope changes will be accepted upstream)
- - role: pmbauer.tarsnap
-   tarsnap_tarsnapper_conf: "{{ TARSNAPPER_CONF }}"
+ - role: 'https://github.com/open-craft/ansible-tarsnap,d96b1e69ae6b930e0841d7b025a3070c408a23f4,pmbauer.tarsnap'
+   tarsnap_tarsnapper_conf: null
    tarsnap_cache: "{{ TARSNAP_CACHE }}"
    tarsnap_keyfile: "{{ TARSNAP_KEY_REMOTE_LOCATION }}"
