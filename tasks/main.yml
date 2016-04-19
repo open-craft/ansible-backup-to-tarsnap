@@ -15,24 +15,6 @@
 - name: Create cache directory
   file: state=directory path={{ TARSNAP_CACHE }} owner=root group=root mode=750
 
-- name: Copy pre-backup script, if any
-  copy:
-    src: "{{ TARSNAP_PRE_BACKUP_SCRIPT }}"
-    dest: "{{ TARSNAP_PRE_BACKUP_SCRIPT_REMOTE_LOCATION }}"
-    owner: root
-    group: root
-    mode: "500"
-  when: "{{ TARSNAP_PRE_BACKUP_SCRIPT }}"
-
-- name: Copy post-backup script, if any
-  copy:
-    src: "{{ TARSNAP_POST_BACKUP_SCRIPT }}"
-    dest: "{{ TARSNAP_POST_BACKUP_SCRIPT_REMOTE_LOCATION }}"
-    owner: root
-    group: root
-    mode: "500"
-  when: "{{ TARSNAP_POST_BACKUP_SCRIPT }}"
-
 - name: template main backup script
   template:
     src: "backup.sh"

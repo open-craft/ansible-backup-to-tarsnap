@@ -8,12 +8,7 @@
 TARSNAP_KEY: null
 TARSNAP_KEY_REMOTE_LOCATION: /root/tarsnap.key
 
-# Contents of a pre-backup script,
-# you may read a file using lookup('file', '/etc/foo.txt')
-# or lookup('template', '/etc/foo.txt').
-TARSNAP_PRE_BACKUP_SCRIPT: null
-TARSNAP_POST_BACKUP_SCRIPT: null
-
+# You'll need to upload these scripts by yourself
 TARSNAP_PRE_BACKUP_SCRIPT_REMOTE_LOCATION: /usr/sbin/backup-pre.sh
 TARSNAP_POST_BACKUP_SCRIPT_REMOTE_LOCATION: /usr/sbin/backup-post.sh
 
