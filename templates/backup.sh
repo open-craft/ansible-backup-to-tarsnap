@@ -7,7 +7,7 @@ timestamp = $(date -Isecond)
 {% endif %}
 
 /usr/local/bin/tarsnap -c --keyfile "{{ TARSNAP_KEY_REMOTE_LOCATION }}" \
---cachedir "{{ TARSNAP_CACHE }}"  -f "{{ DALITE_LOG_TARSNAP_ARCHIVE }}-${timestamp}" \
+--cachedir "{{ TARSNAP_CACHE }}"  -f "{{ TARSNAP_ARCHIVE_NAME }}-${timestamp}" \
 "{{ TARSNAP_BACKUP_FOLDERS }}" \
 {% if TARSNAP_BACKUP_SNITCH %} && curl {{ TARSNAP_BACKUP_SNITCH }} {% endif %}
 
