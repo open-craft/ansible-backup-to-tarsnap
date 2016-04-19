@@ -8,7 +8,6 @@ timestamp = $(date -Isecond)
 
 /usr/local/bin/tarsnap -c --keyfile "{{ TARSNAP_KEY_REMOTE_LOCATION }}" \
 --cachedir "{{ TARSNAP_CACHE }}"  -f "{{ TARSNAP_ARCHIVE_NAME }}-${timestamp}" \
-"{{ TARSNAP_BACKUP_FOLDERS }}" \
-{% if TARSNAP_BACKUP_SNITCH %} && curl {{ TARSNAP_BACKUP_SNITCH }} {% endif %}
+"{{ TARSNAP_BACKUP_FOLDERS }}" {% if TARSNAP_BACKUP_SNITCH %} && curl {{ TARSNAP_BACKUP_SNITCH }} {% endif %}
 
 {{ TARSNAP_POST_BACKUP_SCRIPT_REMOTE_LOCATION }}

@@ -5,8 +5,8 @@
   when: "{{ TARSNAP_KEY == None or TARSNAP_BACKUP_FOLDERS == None }}"
 
 - name: Copy key file into place
-  copy:
-    content: "{{ TARSNAP_KEY }}"
+  template:
+    src: tarsnap.key
     dest: "{{ TARSNAP_KEY_REMOTE_LOCATION }}"
     owner: "root"
     group: "root"
