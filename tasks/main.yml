@@ -1,8 +1,16 @@
 ---
 # Tarsnap - backup
+- name: stat tarsnap key
+  stat: path="{{ TARSNAP_KEY_REMOTE_LOCATION}}"
+  register: remote_key
 
-- fail: msg="Please configure tarsnap role, we want all servers to be backed up :)"
-  when: "{{ TARSNAP_KEY == None or TARSNAP_BACKUP_FOLDERS == None }}"
+# We fail if TARSNAP_KEY is null, unless the key is already on server, presumaby
+# uploaded by another role
+- fail: msg="Please specify tarsnap key"
+  when: "{{ TARSNAP_KEY == None and not remote_key.exists}}"
+
+- fail: msg="Please configure TARSNAP_BACKUP_FOLDERS, we want all servers to be backed up :)"
+  when: "{{ TARSNAP_BACKUP_FOLDERS == None }}"
 
 - name: Copy key file into place
   template:
@@ -29,6 +37,6 @@
 - name: Install backup in cron
   cron:
     name: "Backup for this server, archive: {{ TARSNAP_ARCHIVE_NAME }}"
-    job: "{{ TARSNAP_BACKUP_SCRIPT_LOCATION }} > /dev/null 2> &1"
+    job: "{{ TARSNAP_BACKUP_SCRIPT_LOCATION }} > /dev/null 2>&1"
     hour: "{{ TARSNAP_BACKUP_HOUR }}"
     minute: "{{ TARSNAP_BACKUP_MINUTE }}"
