@@ -1,13 +1,7 @@
 ---
-# Tarsnap - backup
-- name: stat tarsnap key
-  stat: path="{{ TARSNAP_KEY_REMOTE_LOCATION}}"
-  register: remote_key
 
-# We fail if TARSNAP_KEY is null, unless the key is already on server, presumaby
-# uploaded by another role
 - fail: msg="Please specify tarsnap key"
-  when: "{{ TARSNAP_KEY == None and not remote_key.stat.exists}}"
+  when: "{{ TARSNAP_KEY == None }}"
 
 - fail: msg="Please configure TARSNAP_BACKUP_FOLDERS, we want all servers to be backed up :)"
   when: "{{ TARSNAP_BACKUP_FOLDERS == None }}"
