@@ -23,6 +23,8 @@
 - name: Create cache directory
   file: state=directory path={{ TARSNAP_CACHE }} owner=root group=root mode=750
 
+- debug: var=TARSNAP_BACKUP_SCRIPT_LOCATION
+
 - name: template main backup script
   template:
     src: "backup.sh"
