@@ -7,7 +7,7 @@
 # We fail if TARSNAP_KEY is null, unless the key is already on server, presumaby
 # uploaded by another role
 - fail: msg="Please specify tarsnap key"
-  when: "{{ TARSNAP_KEY == None and not remote_key.exists}}"
+  when: "{{ TARSNAP_KEY == None and not remote_key.stat.exists}}"
 
 - fail: msg="Please configure TARSNAP_BACKUP_FOLDERS, we want all servers to be backed up :)"
   when: "{{ TARSNAP_BACKUP_FOLDERS == None }}"
@@ -40,3 +40,4 @@
     job: "{{ TARSNAP_BACKUP_SCRIPT_LOCATION }} > /dev/null 2>&1"
     hour: "{{ TARSNAP_BACKUP_HOUR }}"
     minute: "{{ TARSNAP_BACKUP_MINUTE }}"
+    state: "{{ TARSNAP_CRONTAB_STATE }}"
