@@ -6,6 +6,8 @@
 - fail: msg="Please configure TARSNAP_BACKUP_FOLDERS, we want all servers to be backed up :)"
   when: "{{ TARSNAP_BACKUP_FOLDERS == None }}"
 
+# Note: tarsnap.key template is actually neccessaty. YAML strips whitespace from
+# variables, and tarsnap requires key to end with a newline.
 - name: Copy key file into place
   template:
     src: tarsnap.key
@@ -16,8 +18,6 @@
 
 - name: Create cache directory
   file: state=directory path={{ TARSNAP_CACHE }} owner=root group=root mode=750
-
-- debug: var=TARSNAP_BACKUP_SCRIPT_LOCATION
 
 - name: template main backup script
   template:
