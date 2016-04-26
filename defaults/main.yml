@@ -33,7 +33,8 @@ TARSNAP_BACKUP_SNITCH: null
 
 # Backups should be daily at most
 TARSNAP_BACKUP_HOUR: '*'
-TARSNAP_BACKUP_MINUTE: '0'
+# Avoid 0 minute --- as Dead Man's snitch might do false positive then
+TARSNAP_BACKUP_MINUTE: '10'
 
 TARSNAP_CACHE: "/var/cache/tarsnap"
 
